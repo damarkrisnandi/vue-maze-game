@@ -11,6 +11,9 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  mounted() {
+    document.title = 'Vue-Mazing!'
   }
 }
 </script>
