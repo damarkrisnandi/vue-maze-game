@@ -18,6 +18,8 @@ import {
 import {blockBuilder} from './objects/block-builder'
 import allObject from './objects/all-object'
 import Maze from './objects/maze'
+import item from './objects/item'
+import {animator} from './objects/animator'
 export default {
   name: 'HelloWorld',
   data: () => {
@@ -91,6 +93,7 @@ export default {
       console.log('cek')
       this.maze = new Maze();
       this.maze.init();
+
       for (let y = 0; y < this.maze.map.length; y++) {
         for (let x = 0; x < this.maze.map[y].length; x++) {
           if (this.maze.map[y][x] === '#') {
@@ -100,7 +103,10 @@ export default {
             const data2 = {x: 21, y: 1, nowx: x + 1, nowy: y + 1};
             this.mazeMapping.push(data2);
           } else {
-            const data3 = {x: 11, y: 14, nowx: x + 1, nowy: y + 1};
+            const animateGold = animator(item.gold, {x: 32, y: 32})
+            animateGold.animationSpeed = 0.2
+            animateGold.play();
+            const data3 = {stack: true, animation: animateGold, x: 21, y: 1, nowx: x + 1, nowy: y + 1};
             this.mazeMapping.push(data3);
           }
         }
