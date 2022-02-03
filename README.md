@@ -1,6 +1,6 @@
 # Vue Maze Game
 
-![preview](https://github.com/damarkrisnandi/vue-maze-game/blob/master/src/assets/chrome_PrMumXQ1jz.png)
+![preview](https://github.com/damarkrisnandi/vue-maze-game/blob/master/src/assets/update_030222.png)
 
 Simple Maze Game created with Vue.Js and PIXI.js. The tileart source [here](https://opengameart.org/content/lots-of-free-2d-tiles-and-sprites-by-hyptosis). Gold Coin animation pixelart [here](https://opengameart.org/content/spinning-gold-coin)
 ## Project setup

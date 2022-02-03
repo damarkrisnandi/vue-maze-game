@@ -32,7 +32,8 @@ export default {
       }),
       player: blockBuilder(allObject.player, {x: 2, y: 2}),
       mazeMapping: [],
-      maze: []
+      maze: [],
+      mazeVisualizer: null
     }
   },
   created() {
@@ -51,33 +52,39 @@ export default {
               console.log('hit!')
               return;
             }
-            this.player.y -= 32;
+            // this.player.y -= 32;
+            this.mazeVisualizer.y += 32;
           },
           a: () => {
             if (this.onTheLeft() === '#') {
               console.log('hit!')
               return;
             }
-            this.player.x -= 32;
+            // this.player.x -= 32;
+            this.mazeVisualizer.x += 32;
           },
           s: () => {
             if (this.onTheBottom() === '#') {
               console.log('hit!')
               return;
             }
-            this.player.y += 32;
+            // this.player.y += 32;
+            this.mazeVisualizer.y -= 32;
           },
           d: () => {
             if (this.onTheRight() === '#') {
               console.log('hit!')
               return;
             }
-            this.player.x += 32;
+            // this.player.x += 32;
+            this.mazeVisualizer.x -= 32;
           }
         };
 
         try {
           controls[e.key]();  
+          this.app.stage.addChild(this.mazeVisualizer);
+          this.app.stage.addChild(this.player);
         } catch (error) {
           
         }
@@ -112,22 +119,23 @@ export default {
         }
       }
       const mazeVis = blockBuilder(this.mazeMapping, {x: 1, y: 1});
-      this.app.stage.addChild(mazeVis);
+      this.mazeVisualizer = mazeVis;
+      this.app.stage.addChild(this.mazeVisualizer);
     },
     initPlayer() {
       this.app.stage.addChild(this.player);
     },
     onTheRight() {
-      return this.maze.map[((this.player.y)/ 32) + 1][((this.player.x + 32)/ 32) + 1]
+      return this.maze.map[((this.player.y)/ 32) + 1 - (this.mazeVisualizer.y / 32)][((this.player.x + 32)/ 32) + 1 - (this.mazeVisualizer.x / 32)]
     },
     onTheLeft() {
-      return this.maze.map[((this.player.y)/ 32) + 1][((this.player.x - 32)/ 32) + 1]
+      return this.maze.map[((this.player.y)/ 32) + 1 - (this.mazeVisualizer.y / 32)][((this.player.x - 32)/ 32) + 1 - (this.mazeVisualizer.x / 32)]
     },
     onTheTop() {
-      return this.maze.map[((this.player.y - 32)/ 32) + 1][((this.player.x)/ 32) + 1]
+      return this.maze.map[((this.player.y - 32)/ 32) + 1 - (this.mazeVisualizer.y / 32)][((this.player.x)/ 32) + 1 - (this.mazeVisualizer.x / 32)]
     },
     onTheBottom() {
-      return this.maze.map[((this.player.y + 32)/ 32) + 1][((this.player.x)/ 32) + 1]
+      return this.maze.map[((this.player.y + 32)/ 32) + 1 - (this.mazeVisualizer.y / 32)][((this.player.x)/ 32) + 1 - (this.mazeVisualizer.x / 32)]
     }
   }
 }

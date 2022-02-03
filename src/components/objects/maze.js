@@ -10,13 +10,14 @@ export default class Maze {
     height = 6;
 
     init() {
-        if (Math.floor(window.innerWidth / 32) < Math.floor(window.innerHeight / 32)) {
-            const size = Math.floor(window.innerWidth / 32)
-            this.gameSize = {width: size, height: size}
-        } else {
-            const size = Math.floor(window.innerHeight / 32)
-            this.gameSize = {width: size, height: size}
-        }
+        this.gameSize = {width: 50, height: 50}
+        // if (Math.floor(window.innerWidth / 32) < Math.floor(window.innerHeight / 32)) {
+        //     const size = Math.floor(window.innerWidth / 32)
+        //     this.gameSize = {width: size, height: size}
+        // } else {
+        //     const size = Math.floor(window.innerHeight / 32)
+        //     this.gameSize = {width: size, height: size}
+        // }
 
         this.map = [];
         this.mapSize = { width: this.gameSize.width, height: this.gameSize.height };
