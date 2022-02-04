@@ -23,7 +23,7 @@ export default {
         transparent: false,
         antialias: true
       }),
-      center: {x: Math.floor((window.innerWidth / 2) / 32), y: Math.floor((window.innerHeight / 2) / 32)},
+      center: {x: Math.floor((window.innerWidth / 2) / 32) + 1, y: Math.floor((window.innerHeight / 2) / 32) + 1},
       player: null,
       mazeMapping: [],
       maze: [],
