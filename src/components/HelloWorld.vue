@@ -6,14 +6,7 @@
 
 <script>
 import {
-  Application,
-  Graphics,
-  Loader,
-  Container,
-  Rectangle,
-  Sprite,
-  Texture,
-  BaseTexture
+  Application
 } from 'pixi.js';
 import {blockBuilder} from './objects/block-builder'
 import allObject from './objects/all-object'
@@ -30,7 +23,8 @@ export default {
         transparent: false,
         antialias: true
       }),
-      player: blockBuilder(allObject.player, {x: 2, y: 2}),
+      center: {x: Math.floor((window.innerWidth / 2) / 32), y: Math.floor((window.innerHeight / 2) / 32)},
+      player: null,
       mazeMapping: [],
       maze: [],
       mazeVisualizer: null
@@ -123,19 +117,36 @@ export default {
       this.app.stage.addChild(this.mazeVisualizer);
     },
     initPlayer() {
+      this.player = blockBuilder(allObject.player, this.center);
       this.app.stage.addChild(this.player);
     },
     onTheRight() {
-      return this.maze.map[((this.player.y)/ 32) + 1 - (this.mazeVisualizer.y / 32)][((this.player.x + 32)/ 32) + 1 - (this.mazeVisualizer.x / 32)]
+      return this.maze.map[
+        ((this.player.y)/ 32) + (this.center.y - 1) - (this.mazeVisualizer.y / 32)
+      ][
+        ((this.player.x + 32)/ 32) + (this.center.x - 1) - (this.mazeVisualizer.x / 32)
+      ]
     },
     onTheLeft() {
-      return this.maze.map[((this.player.y)/ 32) + 1 - (this.mazeVisualizer.y / 32)][((this.player.x - 32)/ 32) + 1 - (this.mazeVisualizer.x / 32)]
+      return this.maze.map[
+        ((this.player.y)/ 32) + (this.center.y - 1) - (this.mazeVisualizer.y / 32)
+      ][
+        ((this.player.x - 32)/ 32) + (this.center.x - 1) - (this.mazeVisualizer.x / 32)
+      ]
     },
     onTheTop() {
-      return this.maze.map[((this.player.y - 32)/ 32) + 1 - (this.mazeVisualizer.y / 32)][((this.player.x)/ 32) + 1 - (this.mazeVisualizer.x / 32)]
+      return this.maze.map[
+        ((this.player.y - 32)/ 32) + (this.center.y - 1) - (this.mazeVisualizer.y / 32)
+      ][
+        ((this.player.x)/ 32) + (this.center.x - 1) - (this.mazeVisualizer.x / 32)
+      ]
     },
     onTheBottom() {
-      return this.maze.map[((this.player.y + 32)/ 32) + 1 - (this.mazeVisualizer.y / 32)][((this.player.x)/ 32) + 1 - (this.mazeVisualizer.x / 32)]
+      return this.maze.map[
+        ((this.player.y + 32)/ 32) + (this.center.y - 1) - (this.mazeVisualizer.y / 32)
+      ][
+        ((this.player.x)/ 32) + (this.center.x - 1) - (this.mazeVisualizer.x / 32)
+      ]
     }
   }
 }

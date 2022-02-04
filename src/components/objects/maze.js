@@ -8,6 +8,7 @@ export default class Maze {
     gameSize = { width: 19, height: 19 };
     width = 9;
     height = 6;
+    center = {x: Math.floor((window.innerWidth / 2) / 32), y: Math.floor((window.innerHeight / 2) / 32)};
 
     init() {
         this.gameSize = {width: 50, height: 50}
@@ -54,5 +55,8 @@ export default class Maze {
             return;
           }
         });
+
+        // clear the center (for player start)
+        this.map[this.center.y - 1][this.center.x - 1] = '.';
     }
 }
