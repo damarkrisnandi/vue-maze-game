@@ -164,6 +164,8 @@ export default {
     .controller {
         position:fixed;
         bottom:0;
+        margin-bottom: 16px;
+        opacity: 0.8;
     }
 
     @media screen and (min-width: 600px) {
