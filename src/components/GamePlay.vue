@@ -49,22 +49,10 @@ export default {
     keyDownHandler(e) {
         // Your handler code here
         const controls = {
-          w: () => {
-            if (this.onTheTop() === '#') return;
-            this.mazeVisualizer.y += 32;
-          },
-          a: () => {
-            if (this.onTheLeft() === '#') return;
-            this.mazeVisualizer.x += 32;
-          },
-          s: () => {
-            if (this.onTheBottom() === '#') return;
-            this.mazeVisualizer.y -= 32;
-          },
-          d: () => {
-            if (this.onTheRight() === '#') return;
-            this.mazeVisualizer.x -= 32;
-          }
+          w: () => { if (this.onTheTop() !== '#') this.mazeVisualizer.y += 32; },
+          a: () => { if (this.onTheLeft() !== '#') this.mazeVisualizer.x += 32; },
+          s: () => { if (this.onTheBottom() !== '#') this.mazeVisualizer.y -= 32; },
+          d: () => { if (this.onTheRight() !== '#') this.mazeVisualizer.x -= 32; }
         };
 
         try {
@@ -146,10 +134,10 @@ export default {
 
 <style scoped>
     .controller {
-        position:fixed;
+        position: fixed;
         bottom:0;
         margin-bottom: 16px;
-        opacity: 0.8;
+        opacity: 0.8px;
     }
 
     @media screen and (min-width: 600px) {
