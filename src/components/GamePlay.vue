@@ -1,6 +1,9 @@
 <template>
   <div>
     <!-- <button @click="initMap()">Random Map</button> -->
+    <div class="controller">
+      <Controller @direction="keyDownHandler($event)" />
+    </div>
   </div>
 </template>
 
@@ -13,6 +16,8 @@ import allObject from './objects/all-object'
 import Maze from './objects/maze'
 import item from './objects/item'
 import {animator} from './objects/animator'
+
+import Controller from './Controller.vue'
 export default {
   name: 'HelloWorld',
   data: () => {
@@ -29,6 +34,9 @@ export default {
       maze: [],
       mazeVisualizer: null
     }
+  },
+  components: {
+      Controller
   },
   created() {
     this.initializeWorld();
@@ -76,7 +84,7 @@ export default {
         };
 
         try {
-          controls[e.key]();  
+          controls[(e.key).toLowerCase()]();  
           this.app.stage.addChild(this.mazeVisualizer);
           this.app.stage.addChild(this.player);
         } catch (error) {
@@ -86,7 +94,7 @@ export default {
     },
     initializeWorld() {
       this.app.renderer.backgroundColor = 'black';
-      this.app.renderer.resize(window.innerWidth, window.innerHeight);
+      this.app.renderer.resize(window.innerWidth, window.innerHeight - 64);
       // this.app.renderer.view.style.position = 'absolute';
       document.body.append(this.app.view);
     },
@@ -153,5 +161,14 @@ export default {
 </script>
 
 <style scoped>
+    .controller {
+        position:fixed;
+        bottom:0;
+    }
 
+    @media screen and (min-width: 600px) {
+    .controller {
+        display: none !important;
+    }
+}
 </style>
