@@ -47,7 +47,6 @@ export default class Maze {
         });
         digger.create((x, y, value) => {
           if (value) {
-              console.log(value);
             if (this.map[x + 1][y + 1] !== "#") {
               this.map[x + 1][y + 1] = '*';
             }

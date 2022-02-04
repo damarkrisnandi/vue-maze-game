@@ -50,43 +50,28 @@ export default {
         // Your handler code here
         const controls = {
           w: () => {
-            if (this.onTheTop() === '#') {
-              console.log('hit!')
-              return;
-            }
-            // this.player.y -= 32;
+            if (this.onTheTop() === '#') return;
             this.mazeVisualizer.y += 32;
           },
           a: () => {
-            if (this.onTheLeft() === '#') {
-              console.log('hit!')
-              return;
-            }
-            // this.player.x -= 32;
+            if (this.onTheLeft() === '#') return;
             this.mazeVisualizer.x += 32;
           },
           s: () => {
-            if (this.onTheBottom() === '#') {
-              console.log('hit!')
-              return;
-            }
-            // this.player.y += 32;
+            if (this.onTheBottom() === '#') return;
             this.mazeVisualizer.y -= 32;
           },
           d: () => {
-            if (this.onTheRight() === '#') {
-              console.log('hit!')
-              return;
-            }
-            // this.player.x += 32;
+            if (this.onTheRight() === '#') return;
             this.mazeVisualizer.x -= 32;
           }
         };
 
         try {
-          controls[(e.key).toLowerCase()]();  
-          this.app.stage.addChild(this.mazeVisualizer);
-          this.app.stage.addChild(this.player);
+            controls[(e.key).toLowerCase()](); 
+            // update stage 
+            this.app.stage.addChild(this.mazeVisualizer);
+            this.app.stage.addChild(this.player);
         } catch (error) {
           
         }
@@ -95,11 +80,10 @@ export default {
     initializeWorld() {
       this.app.renderer.backgroundColor = 'black';
       this.app.renderer.resize(window.innerWidth, window.innerHeight - 64);
-      // this.app.renderer.view.style.position = 'absolute';
+      this.app.renderer.view.style.position = 'absolute';
       document.body.append(this.app.view);
     },
     initMap() {
-      console.log('cek')
       this.maze = new Maze();
       this.maze.init();
 
@@ -120,8 +104,8 @@ export default {
           }
         }
       }
-      const mazeVis = blockBuilder(this.mazeMapping, {x: 1, y: 1});
-      this.mazeVisualizer = mazeVis;
+      
+      this.mazeVisualizer = blockBuilder(this.mazeMapping, {x: 1, y: 1});
       this.app.stage.addChild(this.mazeVisualizer);
     },
     initPlayer() {
