@@ -58,5 +58,9 @@ export default class Maze {
 
         // clear the center (for player start)
         this.map[this.center.y - 1][this.center.x - 1] = '.';
+        this.map[this.center.y - 2][this.center.x - 1] = '.';
+        this.map[this.center.y][this.center.x - 1] = '.';
+        this.map[this.center.y - 1][this.center.x - 2] = '.';
+        this.map[this.center.y - 1][this.center.x] = '.';
     }
 }
