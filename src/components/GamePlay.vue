@@ -137,7 +137,8 @@ export default {
         position: fixed;
         bottom:0;
         margin-bottom: 16px;
-        opacity: 0.8px;
+        opacity: 0.8;
+        z-index: 999;
     }
 
     @media screen and (min-width: 600px) {
